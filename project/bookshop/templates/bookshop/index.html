@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.min.css" rel="stylesheet" />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <!--                                                                                            
+    {#  {#  <h1><p align="center">Asosiy sahifa!</p></h1>
+    <h2>Genres</h2>
+    {# for Genres #}
+    {% for genre in genres %}
+      <ul>
+        <li>
+          <p>
+            <b>Id:</b>{{ genre.id }}
+          </p>
+          <p>
+            <b>Name:</b>{{ genre.name }}
+          </p>
+          <p>
+            <b>Description:</b>{{ genre.description }}
+          </p>
+        </li>
+      </ul>
+    {% endfor %}
+    <br /><br /><br />
+    <h2>Books</h2>
+    {# For Books #}
+    {% for book in books %}
+      <ul>
+        <li>
+          <p>
+            <b>Id:</b>{{ book.id }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Title:</b>{{ book.title }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Author:</b>{{ book.author }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Description:</b>{{ book.description }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Price:</b>{{ book.price }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Views:</b>{{ book.views }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Created:</b>{{ book.created }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Updated:</b>{{ book.updated }}
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Published:</b>{{ book.published }}
+          </p>
+        </li>
+      </ul>
+      <br />
+    {% endfor %}#}  #}
+                                                                                                -->
+
+    <!-- Header -->
+    <div class="container">
+      <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-body">
+          <div class="container-fluid">
+            <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" aria-current="page" href="{% url 'home' %}">Asosiy sahifa</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Xususiyatlar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Narxlar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Biz haqimizda</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Background image -->
+        <div class="p-5 text-center bg-image" style="
+      background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+      height: 400px;
+    ">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white">
+                <h1 class="mb-3">Heading</h1>
+                <h4 class="mb-3">Subheading</h4>
+                <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Background image -->
+      </header>
+    </div>
+
+    <!-- Main -->
+    <main class="container">
+      <div class="d-flex justify-content-between mt-5 mb-5">
+        <!-- Div-1 -->
+        <div class="col-3">
+          <ul class="list-group list-group-light">
+            {% for genre in genries %}
+              <a href="{% url 'by_genre' genre.id %}" class="list-group-item px-3 border-0">{{ genre.name }}</a>
+            {% endfor %}
+          </ul>
+        </div>
+        <!-- Div-2 -->
+        <div>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for book in books %}
+              <div class="col">
+                <div class="card h-100">
+                  <!-- If shart -->
+                  {% if book.image %}
+                    <img src="{{ book.image.url }}" class="card-img-top" alt="Skyscrapers" />
+                  {% else %}
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png" class="card-img-top" alt="Skyscrapers" />
+                  {% endif %}
+                  <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.description|truncatewords:20 }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">{{ book.updated }}</small>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-body-tertiary text-center">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+          <!-- Twitter -->
+          <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+          <!-- Google -->
+          <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+          <!-- Instagram -->
+          <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+          <!-- Linkedin -->
+          <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+          <!-- Github -->
+          <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2025 BookShop:
+        <a class="text-body" href="https://AndBookShop.com/">YangiBozor.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
+  </body>
+</html>
