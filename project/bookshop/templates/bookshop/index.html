@@ -156,7 +156,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png" class="card-img-top" alt="Skyscrapers" />
                   {% endif %}
                   <div class="card-body">
-                    <h5 class="card-title">{{ book.title }}</h5>
+                    <a href="{% url 'detail' book.id %}"><h5 class="card-title">{{ book.title }}</h5></a>
                     <p class="card-text">{{ book.description|truncatewords:20 }}</p>
                   </div>
                   <div class="card-footer">
